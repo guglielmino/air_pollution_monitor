@@ -27,9 +27,7 @@ void setup() {
   M5.Lcd.setTextSize(3);
 }
 
-
 void loop() {
-
  if(Serial2.available()) {
    Serial2.readBytesUntil(DATA_END_MARK, buffer, 10);
    readAirQuality();      
@@ -37,10 +35,9 @@ void loop() {
  }
 }
 
-
 void readAirQuality() {
-  airQuality.pm25 = (buffer[3] * 256 + buffer[2]) / 10.0;
-  airQuality.pm10 = (buffer[5] * 256 + buffer[4]) / 10.0;
+  airQuality.pm25 = ((buffer[3] * 256) + buffer[2]) / 10.0;
+  airQuality.pm10 = ((buffer[5] * 256) + buffer[4]) / 10.0;
 }
 
 void displayAirQuality() {
